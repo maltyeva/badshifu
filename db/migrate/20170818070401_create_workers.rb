@@ -5,7 +5,7 @@ class CreateWorkers < ActiveRecord::Migration[5.1]
       t.string :phone
       t.string :wechat
       t.integer :rate
-      t.references :category, foreign_key: true
+      t.references :industry, foreign_key: true
 
       t.timestamps
     end

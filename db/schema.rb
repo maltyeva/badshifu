@@ -10,10 +10,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170818051614) do
+ActiveRecord::Schema.define(version: 20170819062543) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "attachinary_files", id: :serial, force: :cascade do |t|
+    t.string "attachinariable_type"
+    t.integer "attachinariable_id"
+    t.string "scope"
+    t.string "public_id"
+    t.string "version"
+    t.integer "width"
+    t.integer "height"
+    t.string "format"
+    t.string "resource_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["attachinariable_type", "attachinariable_id", "scope"], name: "by_scoped_parent"
+  end
+
+  create_table "industries", force: :cascade do |t|
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "worker_id"
+    t.string "content"
+    t.integer "rating"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+    t.index ["worker_id"], name: "index_reviews_on_worker_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -32,4 +64,19 @@ ActiveRecord::Schema.define(version: 20170818051614) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "workers", force: :cascade do |t|
+    t.string "name"
+    t.string "phone"
+    t.string "wechat"
+    t.integer "rate"
+    t.bigint "industry_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "location"
+    t.index ["industry_id"], name: "index_workers_on_industry_id"
+  end
+
+  add_foreign_key "reviews", "users"
+  add_foreign_key "reviews", "workers"
+  add_foreign_key "workers", "industries"
 end

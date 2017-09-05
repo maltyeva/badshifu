@@ -3,9 +3,10 @@ Rails.application.routes.draw do
   mount Attachinary::Engine => "/attachinary"
 
   devise_for :users
-  root to: 'pages#home'
+  root to: 'industries#index'
+  get "/industries/:id", to: 'industries#show', as: "shifus"
 
-  resources :categories
+  resources :industries
   resources :workers
   resources :reviews
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

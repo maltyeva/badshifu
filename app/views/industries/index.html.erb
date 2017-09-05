@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row">
+    <% @industries.each do |i| %>
+    <div class="col-xs-12 col-sm-4">
+      <!-- insert <div class="card"> -->
+      <%= link_to shifus_path(i) do %> 
+      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= cl_image_path i.photo.path %>);">
+        <div class="card-category">Popular</div>
+          <div class="card-description">
+            <h2><%= i.description %></h2>
+          </div>
+<!--           <img class="card-user" src="https://kitt.lewagon.com/placeholder/users/tgenaitay"> -->
+        </div>
+        <% end %>
+     </div>
+    <% end %>
+</div>
+</div>
