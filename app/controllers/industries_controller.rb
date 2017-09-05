@@ -1,4 +1,5 @@
 class IndustriesController < ApplicationController
+	skip_before_action :authenticate_user!, only: [:index]
 
 	def index 
 		@industries = Industry.all
