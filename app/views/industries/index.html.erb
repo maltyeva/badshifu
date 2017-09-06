@@ -1,3 +1,18 @@
+
+<div class="parallax">
+  <div class="banner">
+    <div class="banner-content">
+      <h1>Find the best shifu in Shanghai</h1>
+      <p>(and the worst)</p>
+      <%= form_tag(industries_path, :method => "get", id: "search-form") do %>
+  <%= text_field_tag :search, params[:search], placeholder: "Search " %>
+  <%= submit_tag "Search", class: "btn btn-primary btn-lg" %>
+  <% end %>
+    </div>
+  </div>
+</div>
+
+
 <div class="container">
   <div class="row">
     <% @industries.each do |i| %>

@@ -3,6 +3,11 @@ class IndustriesController < ApplicationController
 
 	def index 
 		@industries = Industry.all
+		if params[:search]
+			@industries = Industry.search(params[:search])
+		else
+			@industries = Industry.all
+		end
 	end
 
 	def show
