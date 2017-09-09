@@ -1,5 +1,5 @@
 class Industry < ApplicationRecord
-	has_many :workers
+	has_many :workers, dependent: :destroy
 	has_attachment :photo
 
 	validates :description, uniqueness: true 

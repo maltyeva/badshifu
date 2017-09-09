@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'messages/new'
-
   #this be for images
   mount Attachinary::Engine => "/attachinary"
 

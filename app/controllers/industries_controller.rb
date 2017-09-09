@@ -2,7 +2,6 @@ class IndustriesController < ApplicationController
 	skip_before_action :authenticate_user!, only: [:index]
 
 	def index 
-		@industries = Industry.all
 		if params[:search]
 			@industries = Industry.search(params[:search])
 		else
@@ -12,6 +11,12 @@ class IndustriesController < ApplicationController
 
 	def show
 		@industry = Industry.find(params[:id])
+		if params[:search]
+			@workers = @industry.workers.search(params[:search])
+		else
+			@workers = @industry.workers.all
+		end
+
 	end
 
 

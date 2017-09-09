@@ -1,0 +1,16 @@
+<div class="container">
+	<div class="row">
+		<div class="col col-xs-12 col-sm-4 col-sm-offset-4">
+			<h2>Add a Shifu</h2>
+			<%= simple_form_for @worker do |f| %>
+			<%= f.input :wechat, label: "WeChat ID", error: "This shifu has already been added to our database. Leave them a review instead!"  %>
+			<%= f.input :name %>
+			<%= f.input :phone, placeholder: "+86 123 4567 9012"%>
+			<%= f.input :rate, hint: "RMB/hour" %>
+			<%= f.association :industry, label_method: :description, as: :radio_buttons, label: "Specialty"%>
+			<%= f.input :location, collection: @locations, as: :radio_buttons %>
+			<%= f.submit "Add a shifu", class: "btn btn-lg"%>
+			<% end %>
+		</div>
+	</div>
+</div>
